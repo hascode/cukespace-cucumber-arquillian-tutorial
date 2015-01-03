@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<title><ui:insert name="title">hasCode.com - Book Management App</ui:insert></title>
+</h:head>
+<h:body>
+	<p:panel>
+		<h:panelGrid columns="2" cellpadding="10">
+			<h:panelGroup>
+				<h1>
+					<ui:insert name="heading">Java EE 6 Tutorial - Blog Application</ui:insert>
+				</h1>
+			</h:panelGroup>
+		</h:panelGrid>
+		<h2>#{bookControllerBean.books.size()} Books available:</h2>
+		<ul>
+			<ui:repeat value="#{bookControllerBean.books}" var="book">
+				<li><h:outputText value="#{book.title} by #{book.author}" /></li>
+			</ui:repeat>
+		</ul>
+		<h2>Create new book:</h2>
+		<h:messages/>
+		<h:form id="createBookForm">
+			<h:panelGrid columns="3" cellpadding="10">
+				<label>Title</label>
+				<h:inputText label="Title" id="title"
+					value="#{bookControllerBean.book.title}" required="true" />
+				<h:message for="title" class="errorMsg" />
+				<label>Author</label>
+				<h:inputText label="Author" id="author"
+					value="#{bookControllerBean.book.author}" required="true" />
+				<h:message for="author" class="errorMsg" />
+				<h:commandButton title="Save" value="Save" id="saveBook"
+					action="#{bookControllerBean.save}" />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+</h:body>
+</html>
